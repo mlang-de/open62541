@@ -88,9 +88,8 @@ UA_Server_cleanupTimedOutSecureChannels(UA_Server *server,
     channel_entry *entry, *temp;
     TAILQ_FOREACH_SAFE(entry, &server->channels, pointers, temp) {
         /* The channel was closed internally */
-        if(!entry->channel.connection ||
-            (entry->channel.state == UA_SECURECHANNELSTATE_CLOSED &&
-             entry->channel.connection->state == UA_CONNECTIONSTATE_CLOSED)) {
+        if(entry->channel.state == UA_SECURECHANNELSTATE_CLOSED ||
+           !entry->channel.connection) {
             removeSecureChannel(server, entry, UA_DIAGNOSTICEVENT_CLOSE);
             continue;
         }
