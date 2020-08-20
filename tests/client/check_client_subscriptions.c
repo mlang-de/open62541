@@ -904,7 +904,7 @@ stateCallback(UA_Client *client, UA_SecureChannelState channelState,
             UA_NODEID_NUMERIC(0, UA_NS0ID_SERVER_SERVERSTATUS_CURRENTTIME);
         UA_MonitoredItemCreateRequest monRequest =
             UA_MonitoredItemCreateRequest_default(currentTime);
-    
+
         UA_MonitoredItemCreateResult monResponse =
             UA_Client_MonitoredItems_createDataChange(client, response.subscriptionId,
                                                       UA_TIMESTAMPSTORETURN_BOTH,
@@ -936,7 +936,7 @@ START_TEST(Client_subscription_async_sub) {
     /* Activate background publish request */
     cc->outStandingPublishRequests = 10;
 
-    ck_assert_uint_eq(chanState, UA_SECURECHANNELSTATE_FRESH);
+    ck_assert_uint_eq(chanState, UA_SECURECHANNELSTATE_CLOSED);
 
     UA_StatusCode retval = UA_Client_connect(client, "opc.tcp://localhost:4840");
     ck_assert_uint_eq(retval, UA_STATUSCODE_GOOD);
