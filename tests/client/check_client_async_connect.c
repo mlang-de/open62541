@@ -124,7 +124,7 @@ START_TEST(Client_connect_async_abort) {
         do {
             UA_Client_run_iterate(client, 5);
             UA_Client_getState(client, &currentState, NULL, &retval);
-        } while(currentState != UA_SECURECHANNELSTATE_CLOSED);
+        } while(currentState != UA_SECURECHANNELSTATE_FRESH);
         ck_assert_uint_eq(retval, UA_STATUSCODE_GOOD);
     }
 
