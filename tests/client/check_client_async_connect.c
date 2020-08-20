@@ -115,7 +115,7 @@ START_TEST(Client_connect_async_abort) {
     cc->stateCallback = abortSecureChannelConnect;
 
     for(int i = UA_SECURECHANNELSTATE_HEL_SENT;
-        i < UA_SECURECHANNELSTATE_CLOSED; i++) {
+        i < UA_SECURECHANNELSTATE_FRESH; i++) {
         abortState = (UA_SecureChannelState)i;
         UA_StatusCode retval = UA_Client_connectAsync(client, "opc.tcp://localhost:4840");
         ck_assert_uint_eq(retval, UA_STATUSCODE_GOOD);
