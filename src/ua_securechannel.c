@@ -565,7 +565,8 @@ decryptMessageChunk(UA_SecureChannel *channel, UA_Chunk *chunk, void *applicatio
         }
         cryptoModule = &channel->securityPolicy->asymmetricModule.cryptoModule;
     } else {
-        if(channel->state == UA_SECURECHANNELSTATE_CLOSED)
+        if(channel->state == UA_SECURECHANNELSTATE_FRESH ||
+           channel->state == UA_SECURECHANNELSTATE_CLOSED)
             return UA_STATUSCODE_BADSECURECHANNELCLOSED;
 #ifndef FUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION
         processSequenceNumber = processSequenceNumberSym;

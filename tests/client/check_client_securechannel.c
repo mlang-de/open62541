@@ -213,7 +213,7 @@ START_TEST(SecureChannel_cableunplugged) {
 
     UA_SecureChannelState scs;
     UA_Client_getState(client, &scs, NULL, NULL);
-    ck_assert_int_eq(scs, UA_SECURECHANNELSTATE_CLOSED);
+    ck_assert_int_eq(scs, UA_SECURECHANNELSTATE_FRESH);
 
     UA_Client_recvTesting_result = UA_STATUSCODE_GOOD;
     UA_Client_delete(client);
